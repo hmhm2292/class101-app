@@ -9,6 +9,7 @@ import ClassDetailIntroHTML from "AppComponents/ClassDetailIntroHTML";
 import ClassDetailSpecial from "AppComponents/ClassDetailSpecialComponent";
 import ClassDetailExplain from "AppComponents/ClassDetailExplainComponent";
 import ClassDetailCreatorInterView from "AppComponents/ClassDetailCreatorInterView";
+import ClassDetailCurriculum from "../../AppComponents/ClassDetailCurriculum";
 
 export default class ClassDetailScreen extends Component {
   render() {
@@ -22,7 +23,8 @@ export default class ClassDetailScreen extends Component {
           <ClassDetailSpecial />
           <ClassDetailExplain />
           <ClassDetailIntroHTML />
-          {/* <ClassDetailCreatorInterView />  현재 작업중입니다.*/}
+          <ClassDetailCreatorInterView />
+          <ClassDetailCurriculum />
         </ScrollView>
       </View>
     );
