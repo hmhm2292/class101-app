@@ -1,7 +1,6 @@
 import React from "react";
 import Carousel from "react-native-snap-carousel";
 import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
-
 import FilterButton from "./FilterButton/FilterButton";
 
 const dimensions = Dimensions.get("window");

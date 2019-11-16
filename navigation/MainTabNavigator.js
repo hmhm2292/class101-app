@@ -16,15 +16,15 @@ const config = Platform.select({
   default: {}
 });
 
-const ClassListStack = createStackNavigator(
+const HomeStack = createStackNavigator(
   {
     Home: ClassListScreen
   },
   config
 );
 
-ClassListStack.navigationOptions = {
-  tabBarLabel: "Home",
+HomeStack.navigationOptions = {
+  tabBarLabel: "홈",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -37,7 +37,7 @@ ClassListStack.navigationOptions = {
   )
 };
 
-ClassListStack.path = "";
+HomeStack.path = "";
 
 const LinksStack = createStackNavigator(
   {
@@ -78,7 +78,7 @@ SettingsStack.navigationOptions = {
 SettingsStack.path = "";
 
 const tabNavigator = createBottomTabNavigator({
-  ClassListStack,
+  HomeStack,
   LinksStack,
   SettingsStack
 });

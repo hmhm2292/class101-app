@@ -23,6 +23,7 @@ class ClassListScreen extends React.Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View>
         <ScrollView>
@@ -44,5 +45,9 @@ class ClassListScreen extends React.Component {
     );
   }
 }
+
+ClassListScreen.navigationOptions = {
+  title: "홈"
+};
 
 export default ClassListScreen;

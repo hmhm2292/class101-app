@@ -1,17 +1,21 @@
 import React from "react";
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
 import ClassAvailability from "./ClassAvailability";
 
 const dimensions = Dimensions.get("window");
-const classImageWidth = Math.round((dimensions.width * 6.5) / 16);
+const classImageWidth = Math.round((dimensions.width * 4.2) / 10);
 
 const ClassContainer = styled.TouchableOpacity`
   flex-direction: column;
   height: 235;
   width: ${classImageWidth};
-  margin-left: 24;
+  margin-horizontal: 10;
+`;
+
+const ClassImageContainer = styled.View`
+  flex-direction: row;
 `;
 
 const ClassImage = styled.Image`
@@ -20,10 +24,10 @@ const ClassImage = styled.Image`
   border-radius: 5;
 `;
 
-const ClassLikeButton = styled.TouchableOpacity`
+const ClassLikeButton = styled.Image`
   position: absolute;
+  top: 8;
   right: 10;
-  top: 6;
   z-index: 10;
   height: 18;
   width: 18;
@@ -34,6 +38,7 @@ const ClassCategoryCreater = styled.Text`
   font-size: 11;
   font-weight: 600;
   color: #858a8d;
+  margin-top: 5;
 `;
 
 const ClassTitle = styled.Text`
@@ -78,53 +83,60 @@ const ThumbsImage = styled(HeartImage)``;
 
 const ThumbsPercent = styled(HeartCount)``;
 
-const ClassListDetailComponent = props => {
-  return (
-    <ClassContainer>
-      <View>
-        <ClassImage
-          source={{
-            uri: props.classData.imageUrl
-          }}
-        />
-        <ClassLikeButton
-          source={{
-            uri:
-              "https://cdn4.iconfinder.com/data/icons/web-outline/164/17-512.png"
-          }}
-        />
-      </View>
-
-      <ClassCategoryCreater>
-        {props.classData.categoryCreater}
-      </ClassCategoryCreater>
-      <ClassTitle numberOfLines={2}>{props.classData.title}</ClassTitle>
-      <HeartThumbsContainer>
-        <HeartContainer>
-          <HeartImage
+class ClassListDetailComponent extends React.Component {
+  onPress = () => {
+    console.log("class pressed");
+  };
+  render() {
+    return (
+      <ClassContainer activeOpacity={1} onPress={this.onPress}>
+        <ClassImageContainer>
+          <ClassImage
             source={{
-              uri:
-                "https://cdn4.iconfinder.com/data/icons/vote-rewards-solid-style/24/vote-heart-512.png"
+              uri: this.props.classData.imageUrl
             }}
           />
+          <TouchableOpacity activeOpacity={0.1}>
+            <ClassLikeButton
+              source={{
+                uri:
+                  "https://cdn4.iconfinder.com/data/icons/web-outline/164/17-512.png"
+              }}
+            />
+          </TouchableOpacity>
+        </ClassImageContainer>
 
-          <HeartCount>{props.classData.likeCount}</HeartCount>
-        </HeartContainer>
+        <ClassCategoryCreater>
+          {this.props.classData.categoryCreater}
+        </ClassCategoryCreater>
+        <ClassTitle numberOfLines={2}>{this.props.classData.title}</ClassTitle>
+        <HeartThumbsContainer>
+          <HeartContainer>
+            <HeartImage
+              source={{
+                uri:
+                  "https://cdn4.iconfinder.com/data/icons/vote-rewards-solid-style/24/vote-heart-512.png"
+              }}
+            />
 
-        <ThumbsContainer>
-          <ThumbsImage
-            source={{
-              uri:
-                "https://cdn4.iconfinder.com/data/icons/vote-rewards-solid-style/24/vote-thumbs-up-256.png"
-            }}
-          />
-          <ThumbsPercent>{props.classData.rating}</ThumbsPercent>
-        </ThumbsContainer>
-      </HeartThumbsContainer>
-      <ClassAvailability>바로 수강 가능</ClassAvailability>
-      <ClassAvailability color="#fd7e14"></ClassAvailability>
-    </ClassContainer>
-  );
-};
+            <HeartCount>{this.props.classData.likeCount}</HeartCount>
+          </HeartContainer>
+
+          <ThumbsContainer>
+            <ThumbsImage
+              source={{
+                uri:
+                  "https://cdn4.iconfinder.com/data/icons/vote-rewards-solid-style/24/vote-thumbs-up-256.png"
+              }}
+            />
+            <ThumbsPercent>{this.props.classData.rating}</ThumbsPercent>
+          </ThumbsContainer>
+        </HeartThumbsContainer>
+        <ClassAvailability>바로 수강 가능</ClassAvailability>
+        <ClassAvailability color="#fd7e14"></ClassAvailability>
+      </ClassContainer>
+    );
+  }
+}
 
 export default ClassListDetailComponent;

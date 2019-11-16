@@ -41,6 +41,15 @@ const collectionData = [
         categoryCreater: "By. 시은맘",
         likeCount: "1003",
         rating: "99%"
+      },
+      {
+        id: "5",
+        imageUrl:
+          "https://cdn.class101.net/images/274799d9-cfcf-4b74-9e09-d8b28b53fb0a/320xauto",
+        title: "코바늘로 인형을 만들자! 시은맘의 꼼지락 작업실 안녕하세요",
+        categoryCreater: "By. 시은맘",
+        likeCount: "1003",
+        rating: "99%"
       }
     ]
   },

@@ -14,7 +14,7 @@ const buttonWidth = Math.round((dimensions.width * 3) / 16);
 const FilterButton = props => {
   return (
     <View>
-      <TouchableOpacity style={styles.FilterButton}>
+      <TouchableOpacity activeOpacity={1} style={styles.FilterButton}>
         <Image
           source={{ uri: props.category.iconUrl }}
           style={styles.FilterButtonIcon}

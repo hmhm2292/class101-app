@@ -8,6 +8,7 @@ import {
   Animated,
   ScrollView
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const dimensions = Dimensions.get("window");
 const sliderWidth = dimensions.width;
@@ -74,7 +75,7 @@ class Promotion extends Component {
 
   render() {
     return (
-      <View>
+      <TouchableOpacity activeOpacity={1}>
         <ScrollView
           // onScrollStartDrag={this._start}
           horizontal
@@ -116,7 +117,7 @@ class Promotion extends Component {
             </View>
           ))}
         </ScrollView>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
