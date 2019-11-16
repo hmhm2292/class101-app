@@ -28,13 +28,32 @@
     "react-native-parallax-swiper": "^1.1.7",
     "react-native-snap-carousel": "^3.8.4",
     "react-native-vector-icons": "^6.6.0",
+    "react-native-render-html": "^4.1.2",
+    "react-native-status-bar-height": "^2.4.0",
     "react-native-web": "^0.11.7",
     "react-navigation": "^3.12.0",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
     "babel-preset-expo": "^7.0.0",
+    "eslint": "^6.6.0",
+    "eslint-plugin-react": "^7.16.0",
     "jest-expo": "^35.0.0"
   },
-  "private": true
+  "private": true,
+  "name": "class101-app",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wecode-bootcamp-korea/class101-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wecode-bootcamp-korea/class101-app/issues"
+  },
+  "homepage": "https://github.com/wecode-bootcamp-korea/class101-app#readme",
+  "description": ""
 }

@@ -3,6 +3,7 @@ import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
 import MainTabNavigator from "./MainTabNavigator";
 import ClassListScreen from "../src/AppScreens/ClassListScreen/ClassListScreen";
+import MainTabNavigator from "../src/AppScreens/ClassDetailScreen/ClassDetailScreen";
 
 export default createAppContainer(
   createSwitchNavigator({
