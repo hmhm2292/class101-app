@@ -1,14 +1,12 @@
-import React from "react";
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import React from 'react';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
-import MainTabNavigator from "./MainTabNavigator";
-import ClassListScreen from "../src/AppScreens/ClassListScreen/ClassListScreen";
-import MainTabNavigator from "../src/AppScreens/ClassDetailScreen/ClassDetailScreen";
+import MainTabNavigator from '../src/AppScreens/ClassDetailScreen/ClassDetailScreen';
 
 export default createAppContainer(
   createSwitchNavigator({
     // You could add another route here for authentication.
     // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-    Main: ClassListScreen
+    Main: MainTabNavigator,
   })
 );
