@@ -21,8 +21,8 @@ const Collections = props => {
       </TouchableOpacity>
 
       <View style={styles.ListDetailComponent}>
-        {props.collection.classes.map(item => (
-          <ClassListDetailComponent key={item.id} classData={item} />
+        {props.collection.data.map(item => (
+          <ClassListDetailComponent key={item._id} classData={item} />
         ))}
       </View>
     </View>

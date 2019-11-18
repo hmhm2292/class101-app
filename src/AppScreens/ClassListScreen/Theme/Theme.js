@@ -39,10 +39,10 @@ const Theme = props => {
           contentContainerCustomStyle={{
             overflow: "hidden",
             marginLeft: 8,
-            width: itemWidth * props.theme.classes.length + 8
+            width: itemWidth * props.theme.data.length + 8
           }}
           horizontal={true}
-          data={props.theme.classes}
+          data={props.theme.data}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <ClassListDetailComponent classData={item} />

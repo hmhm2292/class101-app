@@ -11,7 +11,7 @@ const ClassAvailableFutureText = styled.Text`
   text-align-vertical: center;
   text-align: center;
   border-radius: 3;
-  color: ${props => props.color || "#fd7e14"};
+  color: #fd7e14;
 `;
 
 const ClassAvailableFuture = ({ children }) => {
