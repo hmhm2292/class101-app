@@ -1,7 +1,14 @@
 import React from "react";
 import { Dimensions } from "react-native";
-import { View, Text, StyleSheet, ScrollView, FlatList } from "react-native";
-import * as WebBrowser from "expo-web-browser";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  FlatList,
+  ActivityIndicator
+} from "react-native";
+
 import Theme from "./Theme/Theme";
 import Filter from "./Filter/Filter";
 import Collections from "./Collections/Collections";
@@ -12,6 +19,8 @@ import Promotion from "./Promotion/Promotion";
 // import themeData from "./ThemeMockData";
 // import filterData from "./FilterMockData";
 // import collectionData from "./CollectionsMockData";
+
+const ipAddress = "http:10.58.1.133:3030";
 
 const screenHeight = Math.round(Dimensions.get("window").height);
 
@@ -24,13 +33,10 @@ class ClassListScreen extends React.Component {
       filter: [],
       collection: [],
       page: 1,
-      next: true
+      next: true,
+      isLoading: false
     };
   }
-
-  static navigationOptions = {
-    title: "홈"
-  };
 
   componentDidMount() {
     this.fetchCategory();
@@ -40,15 +46,15 @@ class ClassListScreen extends React.Component {
   }
 
   fetchCategory = () => {
-    fetch(`http:10.58.1.133:3030/category`)
+    fetch(`${ipAddress}/category`)
       .then(response => response.json())
       .then(response => {
-        this.setState({ filter: response.filter.category });
+        this.setState({ filter: response.category });
       });
   };
 
   fetchPromotion = () => {
-    fetch(`http:10.58.1.133:3030/banner/promotion`)
+    fetch(`${ipAddress}/banner/promotion`)
       .then(response => response.json())
       .then(response => {
         this.setState({ promotion: response.promotion });
@@ -56,7 +62,7 @@ class ClassListScreen extends React.Component {
   };
 
   fetchTheme = () => {
-    fetch(`http:10.58.1.133:3030/banner/theme`)
+    fetch(`${ipAddress}/banner/theme`)
       .then(response => response.json())
       .then(response => {
         this.setState({ theme: response });
@@ -64,18 +70,20 @@ class ClassListScreen extends React.Component {
   };
 
   fetchCollection = () => {
-    fetch(`http:10.58.1.133:3030/collection?page=${this.state.page}&limit=3`)
+    fetch(`${ipAddress}/collection?page=${this.state.page}&limit=3`)
       .then(response => response.json())
       .then(response => {
         if (!response[0].next) {
           this.setState({
             next: false,
-            collection: this.state.collection.concat(response)
+            collection: this.state.collection.concat(response),
+            isLoading: false
           });
         } else {
           this.setState({
             collection: this.state.collection.concat(response),
-            page: response[0].next.page
+            page: response[0].next.page,
+            isLoading: false
           });
         }
       });
@@ -83,45 +91,56 @@ class ClassListScreen extends React.Component {
 
   handleLoadMore = () => {
     if (this.state.next) {
+      this.setState({ isLoading: true });
       this.fetchCollection();
     }
   };
 
   isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
-    return (
-      layoutMeasurement.height + contentOffset.y >= contentSize.height - 10
-    );
+    return layoutMeasurement.height + contentOffset.y > contentSize.height - 1;
   };
 
   render() {
-    console.log(this.state.page);
+    // console.log(this.state.theme);
     return (
-      <View>
-        <ScrollView
-          onScroll={({ nativeEvent }) => {
-            console.log(nativeEvent);
-            if (this.isCloseToBottom(nativeEvent)) {
-              this.handleLoadMore();
-            }
-          }}
-        >
-          <Promotion promotionList={this.state.promotion} />
-          <FlatList
-            data={this.state.theme}
-            keyExtractor={item => item.id}
-            renderItem={({ item }) => <Theme theme={item} />}
-          />
-          <Filter filterCategory={this.state.filter} />
-          <Advertisement />
-          <FlatList
-            data={this.state.collection}
-            keyExtractor={item => item._id}
-            renderItem={({ item }) => <Collections collection={item} />}
-          />
-        </ScrollView>
-      </View>
+      <ScrollView
+        bounces={false}
+        scrollEventThrottle={1}
+        onMomentumScrollEnd={({ nativeEvent }) => {
+          if (this.isCloseToBottom(nativeEvent)) {
+            this.handleLoadMore();
+          }
+        }}
+      >
+        <Promotion promotionList={this.state.promotion} />
+        <FlatList
+          data={this.state.theme}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <Theme theme={item} navigation={this.props.navigation} />
+          )}
+        />
+        <Filter filterCategory={this.state.filter} />
+        <Advertisement />
+        <FlatList
+          data={this.state.collection}
+          keyExtractor={item => item._id}
+          renderItem={({ item }) => (
+            <Collections collection={item} navigation={this.props.navigation} />
+          )}
+        />
+        <View style={styles.loader}>
+          {this.state.isLoading ? <ActivityIndicator size="small" /> : null}
+        </View>
+      </ScrollView>
     );
   }
 }
 
 export default ClassListScreen;
+
+const styles = StyleSheet.create({
+  loader: {
+    alignItems: "center"
+  }
+});

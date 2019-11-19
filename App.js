@@ -8,6 +8,7 @@ import { Ionicons } from "@expo/vector-icons/Ionicons";
 import AppNavigator from "./navigation/AppNavigator";
 
 export default function App(props) {
+  console.disableYellowBox = true;
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {

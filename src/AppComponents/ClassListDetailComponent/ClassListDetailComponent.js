@@ -3,8 +3,7 @@ import { View, Dimensions, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
 import ClassAvailability from "./ClassAvailability";
-import ClassAvailableFuture from "./ClassAvailableFuture/ClassAvailableFuture";
-import ClassAvailableNow from "./ClassAvailableNow/ClassAvailableNow";
+import { thisExpression } from "@babel/types";
 
 const dimensions = Dimensions.get("window");
 const classImageWidth = Math.round((dimensions.width * 4.2) / 10);
@@ -14,6 +13,7 @@ const ClassContainer = styled.TouchableOpacity`
   height: 235;
   width: ${classImageWidth};
   margin-horizontal: 10;
+  margin-top: 10;
 `;
 
 const ClassImageContainer = styled.View`
@@ -86,31 +86,40 @@ const ThumbsImage = styled(HeartImage)``;
 const ThumbsPercent = styled(HeartCount)``;
 
 class ClassListDetailComponent extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      openDate: false
+      openDate: false,
+      id: null
     };
   }
 
   componentDidMount() {
     this.checkOpenDate();
+    this.setId();
   }
+
+  setId = () => {
+    this.setState({ id: this.props.classData._id });
+  };
 
   checkOpenDate = () => {
     if (
-      new Date(this.props.classData.willOpenAt).toDateString() >
-      new Date().toDateString()
+      new Date(this.props.classData.willOpenAt).toISOString() >
+      new Date().toISOString()
     ) {
-      this.setState({ openDate: true }, () => {
-        console.log(this.state.openDate);
-      });
+      this.setState({ openDate: true }, () => {});
     }
   };
 
   onPress = () => {
-    console.log("class pressed");
+    // console.log(this.state.id);
+    // console.log(this.props.navigation.navigate("ClassDetail"));
+    this.props.navigation.navigate("ClassDetail", {
+      id: this.state.id
+    });
   };
+
   render() {
     return (
       <View>
@@ -161,9 +170,16 @@ class ClassListDetailComponent extends React.Component {
             ) : null}
           </HeartThumbsContainer>
           {this.state.openDate ? (
-            <ClassAvailableFuture>미레에 수강 가능</ClassAvailableFuture>
+            <ClassAvailability color="#fd7e14" width="90px">
+              {new Date(
+                this.props.classData.willOpenAt.slice(0, 10)
+              ).getMonth() + 1}
+              월
+              {new Date(this.props.classData.willOpenAt.slice(0, 10)).getDate()}
+              일부터 수강 가능
+            </ClassAvailability>
           ) : (
-            <ClassAvailableNow>바로 수강 가능</ClassAvailableNow>
+            <ClassAvailability>바로 수강 가능</ClassAvailability>
           )}
         </ClassContainer>
       </View>

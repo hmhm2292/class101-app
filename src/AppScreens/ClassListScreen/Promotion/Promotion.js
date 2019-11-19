@@ -73,9 +73,13 @@ class Promotion extends Component {
     });
   };
 
+  onPress = () => {
+    this.props.navigation.navigate("ClassDetail");
+  };
+
   render() {
     return (
-      <TouchableOpacity activeOpacity={1}>
+      <TouchableOpacity activeOpacity={1} onPress={this.onPress}>
         <ScrollView
           // onScrollStartDrag={this._start}
           horizontal

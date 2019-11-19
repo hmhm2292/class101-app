@@ -22,7 +22,11 @@ const Collections = props => {
 
       <View style={styles.ListDetailComponent}>
         {props.collection.data.map(item => (
-          <ClassListDetailComponent key={item._id} classData={item} />
+          <ClassListDetailComponent
+            key={item._id}
+            classData={item}
+            navigation={props.navigation}
+          />
         ))}
       </View>
     </View>

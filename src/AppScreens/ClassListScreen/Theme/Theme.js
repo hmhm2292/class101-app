@@ -45,7 +45,10 @@ const Theme = props => {
           data={props.theme.data}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <ClassListDetailComponent classData={item} />
+            <ClassListDetailComponent
+              classData={item}
+              navigation={props.navigation}
+            />
           )}
         />
       </View>
