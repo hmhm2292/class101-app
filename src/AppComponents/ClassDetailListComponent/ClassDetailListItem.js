@@ -3,22 +3,16 @@ import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 
 export default class ClassDetailListItem extends Component {
   state = {
-    lineActivy: false
+    Activy: ""
   };
-
   render() {
-    const { title, lineMode } = this.props;
+    const { title, selectMode, active } = this.props;
     return (
-      <TouchableOpacity
-        style={styles.container}
-        onPress={() => {
-          this.setState({
-            // lineActivy: data.listData.lineMode.contains(true)
-          });
-        }}
-      >
-        <Text style={styles.listText}>{title}</Text>
-        {this.state.lineActivy.mode ? <View style={styles.listLine}></View> : null}
+      <TouchableOpacity style={styles.container} onPress={selectMode}>
+        <Text value={title} style={styles.listText}>
+          {title}
+        </Text>
+        {active ? <View style={styles.listLine}></View> : null}
       </TouchableOpacity>
     );
   }

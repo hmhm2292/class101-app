@@ -26,6 +26,7 @@ export default class ClassDetailStudentReview extends Component {
             data={this.state.data}
             renderItem={({ item }) => (
               <ClassDetailReviewItem
+                id={item.id}
                 photoUrl={item.photoUrl}
                 nickName={item.user.nickName}
                 userphotoUrl={item.user.photoUrl}

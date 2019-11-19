@@ -22,7 +22,6 @@ const SwiperFrame = styled.View`
   margin-right: 16px;
   border-radius: 3px;
   border-width: 0.3;
-  /* box-shadow: 10px 5px 5px black; */
 `;
 
 const TextQ = styled.Text`
