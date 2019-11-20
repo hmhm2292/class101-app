@@ -169,7 +169,7 @@ class ClassListDetailComponent extends React.Component {
             ) : null}
           </HeartThumbsContainer>
           {this.state.openDate ? (
-            <ClassAvailability color="#fd7e14" width="90px">
+            <ClassAvailability color="#fd7e14" width="100px">
               {new Date(
                 this.props.classData.willOpenAt.slice(0, 10)
               ).getMonth() + 1}

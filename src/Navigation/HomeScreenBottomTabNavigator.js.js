@@ -3,15 +3,31 @@ import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ClassListScreen from "../AppScreens/ClassListScreen/ClassListScreen";
-import LinksScreen from "../../screens/LinksScreen";
 import { createStackNavigator } from "react-navigation";
 import ClassDetailScreen from "../AppScreens/ClassDetailScreen/ClassDetailScreen";
+import LoginScreen from "../AppScreens/LoginScreen/LoginScreen";
+import MyAccountScreen from "../AppScreens/MyAccountScreen/MyAccountScreen";
 
 const HomeStackNavigator = createStackNavigator({
   Home: {
     screen: ClassListScreen,
     navigationOptions: {
       title: "홈"
+    }
+  },
+  ClassDetail: {
+    screen: ClassDetailScreen,
+    navigationOptions: {
+      title: "클라스"
+    }
+  }
+});
+
+const MyAccountStackNavigator = createStackNavigator({
+  MyAccountScreen: {
+    screen: MyAccountScreen,
+    navigationOptions: {
+      header: null
     }
   },
   ClassDetail: {
@@ -33,7 +49,7 @@ const HomeScreenBottomTabNavigator = createBottomTabNavigator({
     }
   },
   MyAccount: {
-    screen: LinksScreen,
+    screen: MyAccountStackNavigator,
     navigationOptions: {
       title: "마이페이지",
       tabBarIcon: () => (
