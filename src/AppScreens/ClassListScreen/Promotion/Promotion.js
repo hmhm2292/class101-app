@@ -50,7 +50,7 @@ class Promotion extends Component {
   };
 
   sliderInterval = () => {
-    setInterval(this.handleInterval, 5000);
+    this.intervalId = setInterval(this.handleInterval, 5000);
   };
 
   componentDidMount() {
@@ -58,7 +58,7 @@ class Promotion extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.sliderInterval);
+    clearInterval(this.intervalId);
   }
 
   setSelectedIndex = event => {

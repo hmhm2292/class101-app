@@ -42,7 +42,7 @@ class Advertisement extends Component {
   };
 
   sliderInterval = () => {
-    setInterval(this.handleInterval, 5000);
+    this.intervalId = setInterval(this.handleInterval, 5000);
   };
 
   componentDidMount() {
@@ -50,7 +50,7 @@ class Advertisement extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.sliderInterval);
+    clearInterval(this.intervalId);
   }
 
   setSelectedIndex = event => {
