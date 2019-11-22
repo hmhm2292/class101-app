@@ -13,9 +13,12 @@ export default class DetailSummaryOption extends Component {
         <FlatList
           horizontal={true}
           data={this.state.data}
-          key={Math.random().toString()}
-          renderItem={({ item }) => (
-            <TopDetailSummaryItem title={item.title} desc={item.desc} />
+          renderItem={({ item, index }) => (
+            <TopDetailSummaryItem
+              title={item.title}
+              desc={item.desc}
+              imageUrl={item.imageUrl}
+            />
           )}
         />
       </View>

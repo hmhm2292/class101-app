@@ -13,8 +13,7 @@ export default class ClassDetailStudentReaction extends Component {
         <FlatList
           horizontal={true}
           data={this.state.data}
-          keyExtractor={(item, index) => index}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <TopDetailSummaryItem title={item.title} desc={item.desc} />
           )}
         />

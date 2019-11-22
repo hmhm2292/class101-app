@@ -1,18 +1,26 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
 import styled from "styled-components";
+import data from "Data/qnasData";
+import ClassDetailFQAItem from "./ClassDetailFQAItem";
 
 export default class ClassDetailFQAComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data: props.data
+    };
   }
 
   render() {
+    const { data } = this.state;
+    const QnAItemList = data.map((el, index) => {
+      return <ClassDetailFQAItem data={el} key={index} />;
+    });
     return (
       <Container>
         <Frame>
           <Title>FQA</Title>
+          {QnAItemList}
         </Frame>
       </Container>
     );
@@ -32,5 +40,4 @@ const Title = styled.Text`
   font-size: 24;
   font-weight: bold;
   margin-top: 40;
-  margin-bottom: 16;
 `;

@@ -3,31 +3,45 @@ import { Image, Dimensions, StyleSheet, Text, View } from "react-native";
 import TopDetailPriceComponent from "./TopDetailPriceComponent";
 import TopDetailSummaryOption from "./TopDetailSummaryOption";
 import TopDetailProductInfoTable from "./TopDetailProductInfoTable";
-
+import HTML from "react-native-render-html";
 export default class DetailInfoComponent extends Component {
+  state = {
+    paused: false,
+    video:
+      '<iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/XMb0w3KMw00"></iframe>'
+  };
   render() {
+    const htmlContent = this.state.video;
     return (
       <View>
-        <Image
-          style={styles.InfoImage}
-          source={{
-            uri:
-              "https://cdn.class101.net/images/ff19aed5-d756-480a-ae5b-3e7a15d2bcc8/1024xauto@2x"
-          }}
-        />
+        {this.props.class ? (
+          <HTML tagsStyles={{ iframe: styles.iframe }} html={htmlContent} />
+        ) : (
+          <Image
+            style={styles.InfoImage}
+            source={{
+              uri: this.props.data.coverImageUrl
+            }}
+          />
+        )}
+
         <View style={styles.InfoContainer}>
           <View style={styles.InfoFrame}>
-            <Text style={styles.CreatorName}>By.엘리</Text>
+            <Text style={styles.CreatorName}>
+              By.{this.props.data.ownerUser.nickname}
+            </Text>
             <Text style={styles.CreatorTitle}>
-              따뜻함으로 가득 채운 한 장, 엘리와 함께하는 색연필 드로잉
+              {this.props.data.curriculum.title}
             </Text>
             <View style={styles.CreatorLabelContainer}>
-              <Text style={styles.CreatorLabel}>미술</Text>
+              <Text style={styles.CreatorLabel}>
+                {this.props.data.categoryId.title}
+              </Text>
               <Text style={styles.CreatorLabel}>바로 수강가능</Text>
             </View>
             <TopDetailPriceComponent />
             <TopDetailSummaryOption />
-            <TopDetailProductInfoTable />
+            <TopDetailProductInfoTable data={this.props.data.wishlistedCount} />
           </View>
         </View>
       </View>
@@ -79,6 +93,7 @@ const styles = StyleSheet.create({
     padding: 2,
     fontSize: 11,
     color: "white",
-    backgroundColor:'black'
-  }
+    backgroundColor: "black"
+  },
+  iframe: { width: "100%", height: 400 }
 });

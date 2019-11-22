@@ -1,14 +1,21 @@
 import React, { Component } from "react";
-import { StyleSheet, View, FlatList, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import ClassDetailListItem from "./ClassDetailListItem";
 import data from "Data/classDetailData";
 
 export default class ClassDetailListComponent extends Component {
-  state = {
-    mode: "class"
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mode: props.data
+    };
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ mode: nextProps.data });
+  }
   handleMode = mode => {
-    this.setState({ mode }); // mode만 쓰면 어떻게 되는가
+    this.setState({ mode });
     this.props.handleComponentMode(mode);
   };
   render() {

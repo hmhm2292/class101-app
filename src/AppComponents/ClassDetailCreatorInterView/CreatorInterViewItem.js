@@ -5,7 +5,7 @@ const CreatorInterViewItem = props => {
   return (
     <SwiperFrame>
       <TextQ>Q.</TextQ>
-      <TextQuestion>{props.data.question}</TextQuestion>
+      <TextQuestion>{props.question}</TextQuestion>
       <TextAnswer>{props.data.answer}</TextAnswer>
     </SwiperFrame>
   );

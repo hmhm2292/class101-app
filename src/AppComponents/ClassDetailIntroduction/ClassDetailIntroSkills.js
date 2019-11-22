@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { StyleSheet, View, FlatList, Text } from "react-native";
 import IntroSkillListItem from "./IntroSkillListItem";
-import data from "Data/classDetailData";
 
 export default class ClassDetailIntroSkills extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      data: data.skills
+      data: props.data
     };
   }
   onLayout = e => {
-    this.props.getclassIntroY(e.nativeEvent.layout.y); // 클래스 소개 컴포넌트의 절대 높이값 을 가져옵니단
+    this.props.getOffSetY("IntroSkills", e.nativeEvent.layout.y); // 클래스 소개 컴포넌트의 절대 높이값 을 가져옵니단
   };
   render() {
     return (
@@ -23,7 +22,7 @@ export default class ClassDetailIntroSkills extends Component {
             <FlatList
               horizontal={true}
               data={this.state.data}
-              renderItem={({ item }) => (
+              renderItem={({ item, index }) => (
                 <IntroSkillListItem
                   id={item.id}
                   title={item.title}

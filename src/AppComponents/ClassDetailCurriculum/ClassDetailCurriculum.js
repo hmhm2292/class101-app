@@ -4,17 +4,18 @@ import data from "Data/curriCulum";
 import CurriCulumItemInfo from "./CurriCulumItemInfo";
 
 export default class ClassDetailCurriculum extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      data: data
+      data: props.data
     };
   }
   onLayout = e => {
-    this.props.getcurriCulumY(e.nativeEvent.layout.y); // 커리큘럼 컴포넌트의 절대위치값을 가져옵니다.
+    this.props.getOffSetY("curriCulum", e.nativeEvent.layout.y); // 커리큘럼 컴포넌트의 절대위치값을 가져옵니다.
   };
   render() {
-    const list = this.state.data.map((el, index) => {
+    // console.log(this.state.data[0].missionSteps);
+    const list = this.state.data.missionSteps.map((el, index) => {
       return <CurriCulumItemInfo info={el} key={index} />;
     });
     return (

@@ -5,17 +5,22 @@ import CurriCulumlastItem from "./CurriCulumlastItem";
 
 export default class CurriCulumItemInfo extends Component {
   render() {
-    const list = this.props.info.missionSteps.missions.map((el, index) => {
+    // console.log("=-======", this.props.info);
+    const list = this.props.info.missions.map((el, index) => {
       return <CurriCulumlastItem data={el} key={index} />;
     });
     return (
       <Container>
         <ImageContainer
           source={{
-            uri: this.props.info.missionSteps.imageUrls
+            uri: this.props.info.imageUrls[0]
           }}
         />
-        <Title>{this.props.info.title}</Title>
+        <Title>
+          {this.props.info.subtitle}
+          {"  "}
+          {this.props.info.title}
+        </Title>
         <EpisodeContainer>{list}</EpisodeContainer>
       </Container>
     );

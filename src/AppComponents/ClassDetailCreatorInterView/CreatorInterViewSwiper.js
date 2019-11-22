@@ -4,8 +4,15 @@ import styled from "styled-components";
 import CreatorInterViewItem from "./CreatorInterViewItem";
 
 const CreatorInterViewSwiper = props => {
+  const question = [
+    "이 클래스만의 매력을 어필해주세요!",
+    "이 클래스를 특별히 추천하고 싶은 분들이 있나요?",
+    "자랑하고 싶은 이 클래스만의 장점을 말해주세요!"
+  ];
   const list = props.data.map((el, index) => {
-    return <CreatorInterViewItem data={el} key={index} />;
+    return (
+      <CreatorInterViewItem data={el} key={index} question={question[index]} />
+    );
   });
   return (
     <SwiperContainer>

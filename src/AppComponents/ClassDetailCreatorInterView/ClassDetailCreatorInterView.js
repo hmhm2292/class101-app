@@ -4,9 +4,13 @@ import CreatorInterViewSwiper from "./CreatorInterViewSwiper";
 import data from "Data/creatorQnAData";
 
 export default class ClassDetailCreatorInterView extends Component {
-  state = {
-    data: data.qnas
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: props.data
+    };
+  }
   render() {
     const { data } = this.state;
     return (

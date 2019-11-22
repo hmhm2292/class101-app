@@ -9,20 +9,29 @@ export default class ClassDetailCreatorInfo extends Component {
     super(props);
     this.state = {
       mode: true,
-      data: data.ownerUser
+      data: props.ownerUser
     };
   }
 
+  handleTextClick = e => {
+    this.setState({
+      mode: !this.state.mode
+    });
+  };
+
+  onLayout = e => {
+    this.props.getOffSetY("CreatorInfo", e.nativeEvent.layout.y); // 커리큘럼 컴포넌트의 절대위치값을 가져옵니다.
+  };
   render() {
     const htmlContent = this.state.data.content;
     return (
       <>
-        <Container>
+        <Container onLayout={this.onLayout}>
           <Frame>
             <TitleFrame>
               <Title>
                 {`크리에이터\n`}
-                <TitleName>{this.state.data.nickName}</TitleName>입니다
+                <TitleName>{this.state.data.nickname}</TitleName>입니다
               </Title>
               <TitleImage
                 source={{
@@ -58,15 +67,7 @@ export default class ClassDetailCreatorInfo extends Component {
             </View>
           </Frame>
         </Container>
-        <Text
-          style={styles.TextButton}
-          onPress={e => {
-            console.log("click");
-            this.setState({
-              mode: !this.state.mode
-            });
-          }}
-        >
+        <Text style={styles.TextButton} onPress={this.handleTextClick}>
           {this.state.mode ? "열기" : "닫기"}
         </Text>
       </>
@@ -77,7 +78,6 @@ export default class ClassDetailCreatorInfo extends Component {
 const Container = styled.View`
   width: 100%;
   align-items: center;
-  margin-bottom: 50;
 `;
 
 const Frame = styled.View`
@@ -121,8 +121,6 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   p: {
-    flexDirection: "row",
-    flexWrap: "wrap",
     fontSize: 15,
     margin: 3
   },
@@ -161,12 +159,12 @@ const styles = StyleSheet.create({
     overflow: "hidden"
   },
   TextButton: {
+    width: 70,
     height: 30,
     zIndex: 10,
-    position: "absolute",
     bottom: 0,
     fontSize: 14,
-    left: "10%",
+    left: "5%",
     color: "#FD7E14"
   }
 });
