@@ -16,7 +16,7 @@ import ClassDetailCreatorInfo from "AppComponents/ClassDetailCreatorInfo";
 import ClassDetailFQAComponent from "AppComponents/ClassDetailFQAComponent";
 import BottomCTA from "AppComponents/BottomCTA";
 
-const API = "http://10.58.1.226:3030/product/5c5d780974eabcfdafd39757";
+const API = "http://10.58.1.226:3030";
 export default class ClassDetailScreen extends Component {
   constructor() {
     super();
@@ -32,7 +32,7 @@ export default class ClassDetailScreen extends Component {
   }
 
   componentDidMount() {
-    fetch(API)
+    fetch(`${API}/product/${this.props.navigation.getParam("id")}`)
       .then(response => response.json())
       .then(data => {
         this.setState({ data: data });
@@ -107,6 +107,7 @@ export default class ClassDetailScreen extends Component {
     }
   };
   render() {
+    console.log(this.props.navigation.getParam("id"));
     const { data, classEnrolment, mode } = this.state;
     return data ? (
       <React.Fragment>
