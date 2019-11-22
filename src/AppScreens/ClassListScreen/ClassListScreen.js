@@ -20,7 +20,7 @@ import Promotion from "./Promotion/Promotion";
 // import filterData from "./FilterMockData";
 // import collectionData from "./CollectionsMockData";
 
-const ipAddress = "http:10.58.1.133:3030";
+const ipAddress = "http://10.58.1.226:3030";
 
 const screenHeight = Math.round(Dimensions.get("window").height);
 
@@ -105,7 +105,7 @@ class ClassListScreen extends React.Component {
     return (
       <ScrollView
         bounces={false}
-        scrollEventThrottle={1}
+        scrollEventThrottle={16}
         onMomentumScrollEnd={({ nativeEvent }) => {
           if (this.isCloseToBottom(nativeEvent)) {
             this.handleLoadMore();
