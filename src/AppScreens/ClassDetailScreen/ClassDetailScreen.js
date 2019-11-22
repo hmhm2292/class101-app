@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
+import { createStackNavigator, createAppContainer } from "react-navigation";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import TopDetailInfoComponent from "AppComponents/ClassDetailTopComponent";
 import ClassDetailListComponent from "AppComponents/ClassDetailListComponent";
@@ -12,6 +13,7 @@ import ClassDetailCreatorInterView from "AppComponents/ClassDetailCreatorInterVi
 
 export default class ClassDetailScreen extends Component {
   render() {
+    console.log(this.props.navigation.getParam("id"));
     return (
       <View style={styles.container}>
         <ScrollView>
