@@ -2,19 +2,23 @@ const classDetailData = {
   summaryData: [
     {
       title: "포함 내역",
-      desc: "콘텐츠 내용"
+      desc: "콘텐츠 내용",
+      imageUrl: "https://class101.net/images/im-play-gray.png"
     },
     {
       title: "수강 대상",
-      desc: "초급자"
+      desc: "초급자",
+      imageUrl: "https://class101.net/images/im-level-gray.png"
     },
     {
       title: "포함 내역",
-      desc: "준비물 키트"
+      desc: "준비물 키트",
+      imageUrl: "https://class101.net/images/im-kit-gray.png"
     },
     {
       title: "강의 만족도",
-      desc: "100%"
+      desc: "100%",
+      imageUrl: "https://class101.net/images/im-feedback-gray.png"
     }
   ],
 

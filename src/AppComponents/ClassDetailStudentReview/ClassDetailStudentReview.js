@@ -24,8 +24,9 @@ export default class ClassDetailStudentReview extends Component {
           <FlatList
             horizontal={true}
             data={this.state.data}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <ClassDetailReviewItem
+                id={item.id}
                 photoUrl={item.photoUrl}
                 nickName={item.user.nickName}
                 userphotoUrl={item.user.photoUrl}

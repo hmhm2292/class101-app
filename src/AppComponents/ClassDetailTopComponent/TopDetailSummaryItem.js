@@ -3,13 +3,10 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 
 export default class DetailSummaryOption extends Component {
   render() {
-    const { title, desc } = this.props;
+    const { title, desc, imageUrl } = this.props;
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{ uri: "https://class101.net/images/im-play-gray.png" }}
-        />
+        <Image style={styles.image} source={{ uri: imageUrl }} />
         <Text style={styles.OptionTitle}>{title}</Text>
         <Text style={styles.OptionDesc}>{desc}</Text>
       </View>
@@ -26,7 +23,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     marginBottom: 6,
     alignItems: "center", // 가로로 가운데 정렬
-    justifyContent: "center", // 세로로 가운데 정렬
+    justifyContent: "center" // 세로로 가운데 정렬
   },
   image: {
     width: 32,

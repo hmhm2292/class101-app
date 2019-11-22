@@ -22,7 +22,7 @@ export default class DetailProductInfoTable extends Component {
                 }}
               />
               <Text style={styles.buttonText}>찜하기</Text>
-              <Text style={styles.buttonTextNumber}>1778</Text>
+              <Text style={styles.buttonTextNumber}>{this.props.data}</Text>
             </View>
           </TouchableHighlight>
         </View>
